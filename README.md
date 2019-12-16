@@ -1,3 +1,6 @@
+![IMG](Images/Voip_Qos.png)
+
+
 In this project, I will propose a monitoring solution for Telecom services based on CDRs. CDRs or otherwise call detail records to hold specific information for traffic such as VoIP, Data, SMS. This event-driven solution can be used to monitor network service status proactively. We expect that at any given point, the data type should fall under specific values, and have a particular volume. For example, packet loss at any given time should be <1 %. The state of the network services is a sum based on a cumulative formula. These are "datapoint/point-features."
 Will focus on:
 

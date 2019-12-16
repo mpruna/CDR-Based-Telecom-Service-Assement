@@ -1,0 +1,8 @@
+,Date,Time,PostDialDelay,Disconnect-Cause,Sip-Status,Session-Disposition,Calling-RTP-Packets-Lost,Called-RTP-Packets-Lost,Calling-RTP-Avg-Jitter,Called-RTP-Avg-Jitter,Calling-R-Factor,Called-R-Factor,Calling-MOS,Called-MOS,Ingress-SBC,Egress-SBC,Originating-Trunk-Group,Terminating-Trunk-Group
+285800,2014-01-01,22:00:00,175,0,0,answered,0.0,0.0,22.0,0.0,9284.0,9285.0,440.0,0.0,Fran-Site,Fran-Site,NoTG,TG0
+285801,2014-01-01,22:15:00,284,3,487,ringing,16.0,0.0,15.0,0.0,9230.0,0.0,279.0,0.0,Fran-Site,Lon-Site,TG1,NoTG
+285802,2014-01-01,22:15:00,532,31,0,answered,0.0,0.0,3.0,2.0,5418.0,0.0,279.0,440.0,Lon-Site,Lon-Site,eu-trunk,TG0
+285803,2014-01-01,22:30:00,438,0,0,ringing,0.0,0.0,0.0,0.0,9284.0,9287.0,277.0,440.0,Lon-Site,Lon-Site,NoTG,es-trunk
+285804,2014-01-01,23:00:00,0,0,0,ringing,0.0,0.0,10.0,0.0,5418.0,9284.0,440.0,440.0,Lon-Site,Fran-Site,eu-trunk,TG0
+285805,2014-01-01,23:25:00,355,1,486,answered,0.0,0.0,0.0,0.0,9181.0,9284.0,313.0,0.0,Fran-Site,Lon-Site,TG0,es-trunk
+285806,2014-01-01,23:38:00,5512,0,0,answered,1.0,0.0,3.0,0.0,0.0,9281.0,440.0,440.0,WaDC-Site,Fran-Site,NoTG,TG0

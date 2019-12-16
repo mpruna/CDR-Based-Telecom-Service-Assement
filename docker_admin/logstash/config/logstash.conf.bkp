@@ -1,0 +1,45 @@
+input {
+    beats {
+        port => "5044"
+   }
+}
+
+filter {
+ if [log_type] == "sms" {
+	csv {
+		columns => ['Date', 'Time', 'PLAN', 'CALL_TYPE', 'MSIDN', 'IMSI', 'IMEI']
+		separator => " "
+		skip_empty_columns => true
+		quote_char => "'"
+	}
+  }
+ if [log_type] == "voip" { 
+  csv {
+    columns => ['Date', 'Time', 'PostDialDelay', 'Disconnect-Cause', 'Sip-Status','Session-Disposition', 'Calling-RTP-Packets-Lost','Called-RTP-Packets-Lost', 'Calling-RTP-Avg-Jitter','Called-RTP-Avg-Jitter', 'Calling-R-Factor', 'Called-R-Factor', 'Calling-MOS', 'Called-MOS', 'Ingress-SBC', 'Egress-SBC', 'Originating-Trunk-Group', 'Terminating-Trunk-Group']
+	separator => " "
+	skip_empty_columns => true
+	quote_char => "'"
+    }
+  } 
+}
+
+output {
+     if [document_type] == "sms"{
+		elasticsearch {
+			hosts => ["elasticsearch:9200"]
+			index => "smscdr_index"
+			}
+		stdout {
+		codec => rubydebug
+               }
+      }
+  if [document_type] == "voip" {
+               elasticsearch {
+		        hosts => ["elasticsearch:9200"]
+		        index => "voipcdr_index"
+		    }
+               stdout {
+               codec => rubydebug
+              }
+      }
+}

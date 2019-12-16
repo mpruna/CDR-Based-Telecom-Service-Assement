@@ -1,0 +1,19 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+     - logs/sms/*.csv
+  tags: ["sms"]
+
+- type: log
+  enabled: true
+  paths:	 
+     - logs/voip/*.csv
+  tags: ["voip"]
+
+output.logstash:
+  enabled: true
+  hosts: ["logstash:5044"]
+  
+logging.to_files: true
+logging.files:

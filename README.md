@@ -6,8 +6,42 @@ Will focus on:
 
 Architecture Design
 
-Under construction, for the time being, will use a simple compose file, but the plan is to create an elk-stack service in the cloud, either AWS/DigitalOcean. Elasticsearch DB with Kibana FE
-Create a DATA blob sample
+We use Elastic stack components to set up the infrastructure. Each component executes a specific task below we can see a breakdown.
+
+![IMG](Images/elk_stack.png)
+
+Stack is deployed based on deployment.yml file. Within this file we define each service, number of replicas, failure scenario, ports, volumes etc. The same file can be used to deploy the stack locally with docker-compose.
+Within project structure we define each component and it's functionality:
+
+Component | Description
+---|---|
+Filebeat | lightweight process that ships log data
+Logstash | Aggregation/Mediation layer
+Elasticsearch | Nosql DB/Backend where we store the data
+Kibana | Web gui
+
+### Project Structure
+
+```buildoutcfg
+docker_admin@docker-elk1-us:~$ tree
+.
+├── docker-compose_stash.yml
+├── filebeat
+│   └── config
+│       ├── filebeat.yml
+├── get-docker.sh
+├── kibana
+│   └── kibana.yml
+├── logstash
+│   └── config
+│       ├── logstash.conf
+│      
+└── sample_data
+    ├── sms/
+    └── voip/
+8 directories, 5727 files
+```
+
 
 Based on a small data sample will create a bigger dataset using sample points.
 

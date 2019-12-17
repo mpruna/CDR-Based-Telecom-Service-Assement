@@ -18,8 +18,81 @@ We use Elastic stack components to set up the infrastructure. Each component exe
 
 ![IMG](Images/elk_stack.png)
 
-Stack is deployed based on deployment.yml file. Within this file we define each service, number of replicas, failure scenario, ports, volumes etc. The same file can be used to deploy the stack locally with docker-compose.
+Stack is deployed based on deployment.yml file. Within this file we define each **service, number of replicas, failure scenario, ports, volumes etc**.
+
+```
+version: '3'services:
+   elasticsearch:
+     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.0
+     container_name: elasticsearch
+     volumes:
+       - 'esdata_4cdr:/usr/share/elasticsearch/data'
+     ports: ['9200:9200']
+     networks:
+       - dockerelk_cdr
+     restart: on-failure
+     deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.role == worker]
+   logstash:
+    image: docker.elastic.co/logstash/logstash:6.8.0
+    container_name: logstash_cdr
+    networks:
+      - dockerelk_cdr
+    volumes:
+      - ./logstash/config:/etc/logstash/conf.d
+    command: /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf    
+    ports:
+      - "5000:5000"
+      - "5044:5044"
+    networks:
+      - dockerelk_cdr
+    depends_on:
+      - elasticsearch
+    restart: on-failure 
+   kibana:
+    image: docker.elastic.co/kibana/kibana:6.8.0
+    container_name: kibana_cdr
+    #volumes:
+    #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - dockerelk_cdr
+    depends_on:
+      - elasticsearch
+    restart: on-failure
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+   filebeat:
+    image: docker.elastic.co/beats/filebeat:6.8.0
+    container_name: filebeat_cdr
+    command: filebeat -e -strict.perms=false
+    volumes:
+      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./sample_data:/usr/share/filebeat/logs
+    networks:
+      - dockerelk_cdr
+    deploy:
+      mode: replicated
+      replicas: 2
+    depends_on:
+      - elasticsearch
+    restart: on-failurenetworks:
+  dockerelk_cdr:
+    driver: overlay
+volumes:
+  esdata_4cdr:
+    driver: local
+  ```
+
+The same file can be used to deploy the stack locally with docker-compose.
 Within project structure we define each component and it's functionality:
+
 
 Component | Description
 ---|---|

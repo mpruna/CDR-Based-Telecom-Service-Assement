@@ -1,13 +1,18 @@
 ![IMG](Images/Voip/Voip_Qos.png)
 
 
-In this project, I will propose a monitoring solution for Telecom services based on CDRs. CDRs or otherwise call detail records to hold specific information for traffic such as VoIP, Data, SMS. This event-driven solution can be used to monitor network service status proactively. We expect that at any given point, the data type should fall under specific values, and have a particular volume. For example, packet loss at any given time should be <1 %. The state of the network services is a sum based on a cumulative formula. These are "datapoint/point-features."
+In this project, I will propose a monitoring solution for Telecom services based on CDRs. 
+
+CDRs or otherwise call detail records to hold specific information for traffic such as **VoIP, Data, SMS**. 
+
+This event-driven solution can be used to monitor network service status proactively. We expect that at any given point, the data type should fall under specific values, and have a particular volume. For example, **packet loss at any given time should be <1 %**. The state of the network services is a sum based on a cumulative formula. These are "datapoint/point-features."
 Will focus on:
 
-    EPC SMS/DATA Traffic
-    VoIP Traffic At the most simplistic level to ensure proper network operation, we must certain percentage of traffic is successful. In regular network operations, we can expect that a certain percentage of traffic is unsuccessful. When levels fall under a % threshold, a notification is sent.
+* EPC SMS/DATA Traffic
 
-Architecture Design
+* VoIP Traffic At the most simplistic level to ensure proper network operation, we must certain percentage of traffic is successful. In regular network operations, we can expect that a certain percentage of traffic is unsuccessful. When levels fall under a % threshold, a notification is sent.
+
+### Architecture Design
 
 We use Elastic stack components to set up the infrastructure. Each component executes a specific task below we can see a breakdown.
 
@@ -25,24 +30,48 @@ Kibana | Web gui
 
 ### Project Structure
 
-```buildoutcfg
-docker_admin@docker-elk1-us:~$ tree
-.
+```
 ├── docker-compose_stash.yml
-├── filebeat
-│   └── config
-│       ├── filebeat.yml
 ├── get-docker.sh
-├── kibana
-│   └── kibana.yml
-├── logstash
-│   └── config
-│       ├── logstash.conf
-│      
-└── sample_data
-    ├── sms/
-    └── voip/
-8 directories, 5727 files
+├── Images
+│   ├── docker_elkstack.png
+│   ├── droppelets.png
+│   ├── elk_stack.png
+│   ├── SMS
+│   │   ├── sms_dashboard.png
+│   │   ├── sms_index.png
+│   │   ├── sms_traffic_patterns.PNG
+│   │   └── time_analysis.png
+│   ├── sms_classification.PNG
+│   ├── traffic_lan.png
+│   ├── Voip
+│   │   ├── SMS_Dashboard.png
+│   │   ├── Voip_index.png
+│   │   ├── Voip_Main.png
+│   │   ├── Voip_Qos.png
+│   │   ├── Voip Session Setup.png
+│   │   └── Voip Trunk Traffic.png
+│   └── Voip_Classification.PNG
+├── Infrastructure
+│   ├── docker-compose_stash.yml
+│   ├── filebeat
+│   │   ├── config
+│   │   │   ├── filebeat.yml
+│   │   │   └── filebeat.yml.bkp
+│   │   └── Dockerfile
+│   ├── get-docker.sh
+│   ├── kibana
+│   │   └── kibana.yml
+│   ├── logstash
+│   │   └── config
+│   │       ├── logstash.conf
+│   │       ├── logstash.conf.bkp
+│   │       └── logstash_sms.conf
+│   └── sample_data
+│       ├── sms/
+│       └── voip/
+└── README.md
+
 ```
 
 

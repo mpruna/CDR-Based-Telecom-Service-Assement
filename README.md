@@ -20,6 +20,10 @@ We use Elastic stack components to set up the infrastructure. Each component exe
 
 Stack is deployed based on deployment.yml file. Within this file we define each **service, number of replicas, failure scenario, ports, volumes etc**.
 
+### Docker Elastic Services Stack
+
+![IMG](Images/docker_services_stack.png)
+
 ```
 version: '3'services:
    elasticsearch:

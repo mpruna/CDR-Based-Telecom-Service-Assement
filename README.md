@@ -16,7 +16,7 @@ Will focus on:
 
 We use Elastic stack components to set up the infrastructure. Each component executes a specific task below we can see a breakdown.
 
-![IMG](Images/elk_stack.png)
+![IMG](Images/elk_stack.PNG)
 
 Stack is deployed based on deployment.yml file. Within this file we define each **service, number of replicas, failure scenario, ports, volumes etc**.
 

@@ -116,27 +116,16 @@ Kibana | Web gui
 │   ├── docker_elkstack.png
 │   ├── droppelets.png
 │   ├── elk_stack.png
-│   ├── SMS
-│   │   ├── sms_dashboard.png
-│   │   ├── sms_index.png
-│   │   ├── sms_traffic_patterns.PNG
-│   │   └── time_analysis.png
 │   ├── sms_classification.PNG
 │   ├── traffic_lan.png
-│   ├── Voip
-│   │   ├── SMS_Dashboard.png
-│   │   ├── Voip_index.png
-│   │   ├── Voip_Main.png
-│   │   ├── Voip_Qos.png
-│   │   ├── Voip Session Setup.png
-│   │   └── Voip Trunk Traffic.png
 │   └── Voip_Classification.PNG
+│   ├── Voip/
+│   ├── SMS/
 ├── Infrastructure
 │   ├── docker-compose_stash.yml
 │   ├── filebeat
 │   │   ├── config
 │   │   │   ├── filebeat.yml
-│   │   │   └── filebeat.yml.bkp
 │   │   └── Dockerfile
 │   ├── get-docker.sh
 │   ├── kibana
@@ -144,7 +133,6 @@ Kibana | Web gui
 │   ├── logstash
 │   │   └── config
 │   │       ├── logstash.conf
-│   │       ├── logstash.conf.bkp
 │   │       └── logstash_sms.conf
 │   └── sample_data
 │       ├── sms/
